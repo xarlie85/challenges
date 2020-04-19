@@ -3,8 +3,11 @@ package challenges.api.video_rental_store.service.dtos;
 import java.io.Serializable;
 import java.util.Date;
 
-import lombok.Getter;
+import lombok.*;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class VideoDto implements Serializable {
 
 	@Getter
@@ -34,65 +37,5 @@ public class VideoDto implements Serializable {
 	private boolean available;
 	private Date availableFrom;
 	private VideoType type;
-
-	public VideoDto() {
-	}
-
-	public VideoDto(Integer id, String title, String desc, boolean available, Date availableFrom, VideoType type) {
-		this.id = id;
-		this.title = title;
-		this.descr = desc;
-		this.available = available;
-		this.availableFrom = availableFrom;
-		this.type = type;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDescr() {
-		return this.descr;
-	}
-
-	public void setDescr(String desc) {
-		this.descr = desc;
-	}
-
-	public boolean isAvailable() {
-		return available;
-	}
-
-	public void setAvailable(boolean available) {
-		this.available = available;
-	}
-
-	public Date getAvailableFrom() {
-		return availableFrom;
-	}
-
-	public void setAvailableFrom(Date availableFrom) {
-		this.availableFrom = availableFrom;
-	}
-
-	public VideoType getType() {
-		return type;
-	}
-
-	public void setType(VideoType type) {
-		this.type = type;
-	}
 
 }

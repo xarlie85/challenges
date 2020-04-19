@@ -8,7 +8,7 @@ public interface RentalService {
 
 	public List<VideoDto> findInventory();
 
-	public Integer rentMovies(RentDto rentDto);
+	public RentDto rentMovies(RentDto rentDto);
 
 	public Integer returnMovies(RentDto rentDto);
 }

@@ -34,9 +34,8 @@ public class RentalServiceImpl implements RentalService {
 	}
 
 	@Override
-	public Integer rentMovies(RentDto rentDto) {
-		// TODO Auto-generated method stub
-		return null;
+	public RentDto rentMovies(RentDto rentDto) {
+		return rentDto;
 	}
 
 	@Override

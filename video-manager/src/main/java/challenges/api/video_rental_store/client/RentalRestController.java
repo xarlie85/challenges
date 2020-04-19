@@ -16,8 +16,8 @@ import io.swagger.annotations.*;
 public class RentalRestController {
 
 	public static final String URI_RENTALS_BASE = "/rentals";
-	public static final String URI_RENTALS_RENT = URI_RENTALS_BASE + "/rent";
-	public static final String URI_RENTALS_RETURN = URI_RENTALS_BASE + "/return";
+	public static final String URI_RENTALS_RENT = "/rent";
+	public static final String URI_RENTALS_RETURN = "/return";
 
 	private final RentalService rentalService;
 
@@ -34,11 +34,10 @@ public class RentalRestController {
 
 	@PutMapping(URI_RENTALS_RENT)
 	@ApiOperation(value = "API method for renting movies.")
-	@ApiResponses(value = { @ApiResponse(code = 404, message = SwaggerDocConstants.NOT_FOUND, response = ApiError.class),
-			@ApiResponse(code = 400, message = SwaggerDocConstants.BAD_REQUEST, response = ApiError.class) })
-	public Integer rentMovie(@RequestBody RentDto rentDto) {
-		Integer price = 0;
-		return price;
+//	@ApiResponses(value = { @ApiResponse(code = 404, message = SwaggerDocConstants.NOT_FOUND, response = ApiError.class),
+//			@ApiResponse(code = 400, message = SwaggerDocConstants.BAD_REQUEST, response = ApiError.class) })
+	public RentDto rentMovie(@RequestBody RentDto rentDto) {
+		return rentalService.rentMovies(rentDto);
 	}
 
 	@PutMapping(URI_RENTALS_RETURN)

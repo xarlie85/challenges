@@ -20,7 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.*;
 
-import challenges.api.video_rental_store.service.dtos.VideoDto;
+import challenges.api.video_rental_store.service.dtos.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = { "security.basic.enabled=true" })
@@ -47,10 +47,31 @@ public class RentalApiIT {
 	}
 
 	@Test
-	public void inventoryNotEmpty() {
+	public void GET_findInventory_inventoryNotEmpty_ok() {
 		List<VideoDto> videoDtos = retrieveInventory();
 		assertNotNull(videoDtos);
 		assertTrue(!videoDtos.isEmpty());
+	}
+
+	private RentDto rentMovie(RentDto rentDto) {
+		String Uri = UriComponentsBuilder.fromUriString(RentalRestController.URI_RENTALS_BASE + RentalRestController.URI_RENTALS_RENT).toUriString();
+		ResponseEntity<RentDto> response = restTemplate.exchange(Uri, HttpMethod.PUT, new HttpEntity<>(rentDto), RentDto.class);
+		Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
+
+		rentDto = response.getBody();
+		return rentDto;
+	}
+
+	@Test
+	public void PUT_rentMovie_availableMoviesList_PaymentAmountEqualsPrice_ok() {
+		List<VideoDto> videoDtos = retrieveInventory();
+
+		RentDto rentDtoIn = new RentDto(9, videoDtos, 3);
+		RentDto rentDtoOut = rentMovie(rentDtoIn);
+
+		System.out.println(rentDtoIn);
+		System.out.println(rentDtoOut);
+		assertTrue(rentDtoIn.equals(rentDtoOut));
 	}
 
 }
