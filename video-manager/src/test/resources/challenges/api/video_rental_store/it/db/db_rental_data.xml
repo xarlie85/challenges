@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
+    <t_customer id="1" name="carlos" bonus="0"/>
     <t_movie id="1" title="Unglorious" descr="bastards" avail="true" avail_f="2020-04-19" type="NEW_RELEASE" />
+    <t_movie id="2" title="Unglorious" descr="bastards" avail="true" avail_f="2020-04-19" type="OLD" />
 </dataset>

@@ -11,7 +11,8 @@ import lombok.*;
 public class RentDto implements Serializable {
 
 	private Integer paymentAmount;
-	private List<VideoDto> movies;
+	private List<VideoDto> videos;
 	private int daysToRent;
+	private Integer customerId;
 
 }

@@ -1,7 +1,6 @@
 package challenges.api.video_rental_store.respository.entities;
 
 import java.sql.Date;
-import java.util.Set;
 
 import javax.persistence.*;
 
@@ -28,8 +27,5 @@ public class VideoEntity {
 	@Column
 	@Enumerated(EnumType.STRING)
 	private VideoType type;
-
-	@ManyToMany
-	Set<RentalEntity> rentals;
 
 }

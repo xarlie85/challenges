@@ -37,7 +37,7 @@ public class RentalRestController {
 //	@ApiResponses(value = { @ApiResponse(code = 404, message = SwaggerDocConstants.NOT_FOUND, response = ApiError.class),
 //			@ApiResponse(code = 400, message = SwaggerDocConstants.BAD_REQUEST, response = ApiError.class) })
 	public RentDto rentMovie(@RequestBody RentDto rentDto) {
-		return rentalService.rentMovies(rentDto);
+		return rentalService.rentVideos(rentDto);
 	}
 
 	@PutMapping(URI_RENTALS_RETURN)

@@ -7,17 +7,17 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class ApiError {
-	
+
 	public enum ApiErrorLabel {
-		PRICE_HIGHER_THAN_PAYMENT_AMOUNT, UNHANDLED_EXCEPTION
+		RENT_ACTION_FAILURE, RETURN_ACTION_FAILURE, RESOURCE_NOT_FOUND, VIDEO_NOT_AVAILABLE, UNHANDLED_EXCEPTION
 	}
-	
+
 	private String errorLabel;
 	private String errorMsg;
-	
+
 	public ApiError(String errorLabel, String errorMsg) {
-		this.errorLabel = errorLabel; 
+		this.errorLabel = errorLabel;
 		this.errorMsg = errorMsg;
 	}
-	
+
 }

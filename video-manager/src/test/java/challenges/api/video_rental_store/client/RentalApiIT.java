@@ -66,7 +66,7 @@ public class RentalApiIT {
 	public void PUT_rentMovie_availableMoviesList_PaymentAmountEqualsPrice_ok() {
 		List<VideoDto> videoDtos = retrieveInventory();
 
-		RentDto rentDtoIn = new RentDto(9, videoDtos, 3);
+		RentDto rentDtoIn = new RentDto(22, videoDtos, 6, 1);
 		RentDto rentDtoOut = rentMovie(rentDtoIn);
 
 		System.out.println(rentDtoIn);
