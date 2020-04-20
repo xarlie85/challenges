@@ -15,6 +15,7 @@ import lombok.*;
 public class RentalEntity {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column(name = "r_from")
 	private Date rentedFrom;

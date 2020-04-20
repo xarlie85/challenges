@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.*;
@@ -26,11 +27,13 @@ import challenges.api.video_rental_store.service.dtos.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = { "security.basic.enabled=true" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class,
 		DbUnitTestExecutionListener.class })
-@DatabaseSetup(RentalApiIT.DB_DATA)
+@DatabaseSetup({ RentalApiIT.DB_DATA, RentalApiIT.DB_DATA_CUST })
 @DbUnitConfiguration(databaseConnection = "dbUnitDatabaseConnection")
+@DirtiesContext
 public class RentalApiIT {
 
 	public static final String DB_DATA = "classpath:challenges/api/video_rental_store/it/db/db_rental_data.xml";
+	public static final String DB_DATA_CUST = "classpath:challenges/api/video_rental_store/it/db/db_customer_data.xml";
 
 	@Autowired
 	private TestRestTemplate restTemplate;
@@ -66,12 +69,31 @@ public class RentalApiIT {
 	public void PUT_rentMovie_availableMoviesList_PaymentAmountEqualsPrice_ok() {
 		List<VideoDto> videoDtos = retrieveInventory();
 
-		RentDto rentDtoIn = new RentDto(22, videoDtos, 6, 1);
+		RentDto rentDtoIn = new RentDto(0, 22, videoDtos, 6, 1);
 		RentDto rentDtoOut = rentMovie(rentDtoIn);
 
 		System.out.println(rentDtoIn);
 		System.out.println(rentDtoOut);
-		assertTrue(rentDtoIn.equals(rentDtoOut));
+
+		assertTrue(rentDtoIn.getPaymentAmount().equals(rentDtoOut.getPaymentAmount()));
+	}
+
+	@Test
+	public void PUT_returnMovies_noSurcharge_ok() {
+
+		List<VideoDto> videoDtos = retrieveInventory();
+
+		RentDto rentDtoIn = new RentDto(0, 22, videoDtos, 6, 1);
+		RentDto rentDtoOut = rentMovie(rentDtoIn);
+
+		String Uri = UriComponentsBuilder.fromUriString(
+				RentalRestController.URI_RENTALS_BASE + RentalRestController.URI_RENTALS_RETURN.replace("{rentalId}", rentDtoOut.getId().toString()))
+				.toUriString();
+		ResponseEntity<Integer> response = restTemplate.exchange(Uri, HttpMethod.PUT, new HttpEntity<>(rentDtoOut), Integer.class);
+		Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
+		Integer surcharge = response.getBody();
+
+		assertTrue(surcharge == 0);
 	}
 
 }

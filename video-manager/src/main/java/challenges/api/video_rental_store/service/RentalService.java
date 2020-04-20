@@ -12,5 +12,5 @@ public interface RentalService {
 
 	public RentDto rentVideos(RentDto rentDto);
 
-	public Integer returnMovies(RentDto rentDto);
+	public Integer returnMovies(RentDto rentDto, Integer rentId);
 }

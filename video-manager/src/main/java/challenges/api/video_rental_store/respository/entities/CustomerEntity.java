@@ -14,6 +14,7 @@ import lombok.*;
 public class CustomerEntity implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column
 	private String name;

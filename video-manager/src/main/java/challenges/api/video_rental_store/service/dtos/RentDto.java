@@ -10,6 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 public class RentDto implements Serializable {
 
+	private Integer id;
 	private Integer paymentAmount;
 	private List<VideoDto> videos;
 	private int daysToRent;

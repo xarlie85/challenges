@@ -15,6 +15,7 @@ import lombok.*;
 public class VideoEntity {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column
 	private String title;
