@@ -3,4 +3,4 @@
 
 Here follows the list of links for the faced challenges:
 
-1. [Video rental store](https://github.com/xarlie85/challenges) 
+1. [Video rental store](https://github.com/xarlie85/challenges/tree/master/video-manager) 
