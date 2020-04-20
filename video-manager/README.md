@@ -42,5 +42,17 @@
 #### Requirements
 	* Uses [lombok](https://projectlombok.org/) code generator used and required to compile in your IDE 
 	* Created with STS 4-4.4.1.RELEASE (Eclipse)
-	
+
+# CHALLENGE DESCRIPTION
+ 
+For a video rental store we want to create a system for managing the rental. We want 3 primary features: 
+1. Have an inventory of films 2.- Calculate the price for rentals 3.- Keep track of the customers “bonus” points 
+ 
+The price of rentals is based on the type of film rented and how many days the film is rented for. The customers say when renting for how many days they want to rent for and pay up front. If the film is returned late, then rent for the extra days is charged when returning. The store has three types of films. 
+ 
+1. New releases – Price is times number of days rented. 2. Regular films – Price is for the first 3 days and then times the number of days over 3. 3. Old film - Price is for the first 5 days and then times the number of days over 5 
+ premium price is 3 eur basic price is 1 euro 
+ 
+Customer get bonus points when renting films. A new release gives 2 points and other films get one point per rental 
+ 
 	
